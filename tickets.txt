@@ -1,0 +1,69 @@
+{"A":0,"B":0,"C":0}
+
+
+    const mailOptionsClient = {
+      from: process.env.ORGANIZER_EMAIL,
+      to: email,
+      subject: 'FESTIVAL COREANO 2024 - Tiquete',
+      html: `
+        <p><strong>안녕하세요! Hola ${name} ¡Muchas gracias por confiar en nosotros!</strong></p>
+        <p>Adjunto a este correo encontrará los tiquetes comprados en PDF y JPG.</p>
+
+        <p>Recuerda sus tiquetes son únicos e intransferibles y es responsabilidad del cliente la privacidad de los mismos.<br>
+        Debes presentar este tiquete en la entrada del festival.</p>
+
+        <p>Atentamente,</p>
+        <p>
+          Centro Cultural Coreano<br>
+          <a href="http://www.coreacolombia.com">www.coreacolombia.com</a><br>
+          Nit: 901032792-0<br>
+          Carrera 53 #5b-09<br>
+          Instagram: <a href="https://instagram.com/coreacolombia">@coreacolombia</a><br>
+          Móvil: 3118266816
+        </p>
+
+        <p><strong>Política de Privacidad de Datos Personales:</strong></p>
+        <p>
+          En el Centro Cultural Coreano, respetamos y protegemos la privacidad de nuestros clientes. 
+          Los datos personales que recopilamos al momento de la compra de tiquetes para nuestros eventos, tales como nombre, número de identificación, correo electrónico y número de teléfono, 
+          son usados exclusivamente para gestionar su participación, enviar confirmaciones, y brindar información relevante sobre el evento. 
+          Los datos personales son compartidos con la empresa de entretenimiento "Star Park" quienes están obsequiando cupones para los participantes del festival.<br>
+          Garantizamos que esta información será manejada de forma confidencial, en cumplimiento con las leyes de protección de datos sensibles de la República de Colombia.
+        </p>
+
+        <p><strong>Aviso sobre el uso de tiquetes:</strong></p>
+        <p>
+          El tiquete generado es de uso estrictamente personal e intransferible. Compartir o permitir que otra persona acceda al código QR o información del tiquete 
+          es responsabilidad exclusiva del cliente. En caso de que un tercero no autorizado use el tiquete para ingresar al festival, el Centro Cultural Coreano no se hará responsable 
+          y el cliente titular del tiquete podría no tener acceso al evento. Por lo tanto, recomendamos mantener el tiquete seguro y evitar compartirlo en cualquier medio digital o físico.
+        </p>
+      `,
+      attachments: [
+        { filename: `boleta-${ticketNumber}.pdf`, content: pdfBuffer }, // PDF adjunto
+        { filename: `boleta-${ticketNumber}.jpeg`, content: jpegBuffer }, // Imagen adjunta
+      ],
+    };
+
+    const mailOptionsOrganizer = {
+      from: process.env.ORGANIZER_EMAIL,
+      to: process.env.ORGANIZER_EMAIL,
+      subject: `Nueva tiquete generado: ${ticketNumber}`,
+      text: `Boleta generada:\nNombre: ${name}\nEmail: ${email}\nTeléfono: ${phone}\nBoleta: ${ticketNumber}\nFirma Digital: ${uniqueCode}`,
+      html: `
+        <p><strong>Tiquete generado</p>
+        <p>Nombre: ${name}</p>
+        <p>Email: ${email}</p>
+        <p>Número de identificación: ${identification}</p>
+        <p>Teléfono/celular: ${phone}</p>
+        <p>Tiquete No: ${ticketNumber}</p>
+        <p>Firma digital: ${uniqueCode}</p>
+      `,
+      attachments: [
+        { filename: `boleta-${ticketNumber}.pdf`, content: pdfBuffer }, // PDF adjunto
+        { filename: `boleta-${ticketNumber}.jpeg`, content: jpegBuffer }, // Imagen adjunta
+      ],
+    };
+
+
+ORGANIZER_EMAIL=info@coreacolombia.com
+EMAIL_PASS=qhse npfd tuud jaoa
